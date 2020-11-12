@@ -1,0 +1,30 @@
+{
+  "name": "adonis-prometheus",
+  "version": "1.0.0",
+  "description": "Prometheus support for AdonisJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TNkemdilim/adonis-prometheus.git"
+  },
+  "keywords": [
+    "adonis",
+    "prometheus",
+    "monitoring"
+  ],
+  "author": "Tochukwu Nkemdilim <nkemdilimtochukwu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TNkemdilim/adonis-prometheus/issues"
+  },
+  "homepage": "https://github.com/TNkemdilim/adonis-prometheus#readme",
+  "dependencies": {
+    "prom-client": "^12.0.0"
+  },
+  "devDependencies": {
+    "standard": "^16.0.2"
+  }
+}
