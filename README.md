@@ -77,7 +77,7 @@ const sendEmail = async () => {
     // Step 2: Increment success counter (if success).
     sendEmail.inc({ success: 1 });
   } catch (err) {
-    // Step 2: Increment success counter (if failed).
+    // Step 2: Increment failed counter (if failed).
     sendEmail.inc({ failed: 1 });
   }
 };
