@@ -1,6 +1,6 @@
 {
   "name": "adonis-prometheus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Prometheus support for AdonisJS",
   "main": "index.js",
   "scripts": {

@@ -20,5 +20,5 @@ module.exports = {
    */
   throughputMetric: new prometheus.Counter(
     Config.get("prometheus.throughputMetric")
-  ).inc(),
+  ),
 };
