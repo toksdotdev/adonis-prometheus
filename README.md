@@ -63,9 +63,9 @@ To simply do that, simply modify the available configuration in [config/promethe
 const Prometheus = use("Prometheus");
 
 // Step 1: Create the metrics counter.
-const sentEmails = new Prometheus.Counter({
+const emailMetric = new Prometheus.Counter({
   name: "send_emails",
-  help: "Total SMS sent.",
+  help: "Total Emails sent.",
   labels: ["success", "failed"],
   prefix: "",
 });
@@ -75,10 +75,10 @@ const sendEmail = async () => {
     // Implement logic to send Email here.
 
     // Step 2: Increment success counter (if success).
-    sendEmail.inc({ success: 1 });
+    emailMetric.inc({ success: 1 });
   } catch (err) {
     // Step 2: Increment failed counter (if failed).
-    sendEmail.inc({ failed: 1 });
+    emailMetric.inc({ failed: 1 });
   }
 };
 
