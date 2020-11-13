@@ -1,26 +1,24 @@
 "use strict";
 
-const metrics = require("../metrics");
 const Config = use("Config");
+const metrics = require("../Metrics");
 
 class CollectPerformanceMetric {
   async handle({ request, response }, next) {
-    let stopHttpRequestTimer;
-
     /**
      * Extract config.
      */
     const { enabled: enableHttpMetric, includeQueryParams } = Config.get(
       "prometheus.httpMetric.enabled"
     );
-
     const enableThroughputMetric = Config.get(
-      "prometheus.throughtputMetric.enabled"
+      "prometheus.throughputMetric.enabled"
     );
 
     /**
      * Start HTTP request timer.
      */
+    let stopHttpRequestTimer;
     if (enableHttpMetric) {
       stopHttpRequestTimer = metrics.httpMetric.startTimer({
         method: request.method(),

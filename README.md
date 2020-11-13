@@ -1,10 +1,10 @@
-# Adonis Prometheus 🚀
+# Adonis Prometheus 🧐
 
 Provides a simple way to easily montior your AdonisJS application via [Prometheus](https://prometheus.io/).
 
 This is simply a wrapper around the NodeJS [prom-client](https://github.com/siimon/prom-client) library, along with extra in-built metrics tailored for AdonisJS.
 
-You can also build your custom metrics with this library just as you would have done with [prom-client](https://github.com/siimon/prom-client). Check out [building custom metrics](#Building%20Custom%20Metrics).
+You can also build your custom metrics with this library just as you would have done with [prom-client](https://github.com/siimon/prom-client). Check out [building custom metrics](#Building-Custom-Metrics).
 
 ## Installation
 
@@ -39,8 +39,8 @@ To enable them, simply register the `PrometheusMiddleware` as the **first item**
 
 ```js
 const globalMiddleware = [
-  // Make it first middleware for more accurate metrics.
-  "adonis-prometheus/middlewares/CollectPerformanceMetric",
+  // Make it first in the list for reliable metric.
+  "Adonis/Prometheus/Middlewares/CollectPerformanceMetric",
   "Adonis/Middleware/BodyParser",
 ];
 ```
@@ -56,7 +56,7 @@ To simply do that, simply modify the available configuration in [config/promethe
 
 ## Building Custom Metrics
 
-### Track Total SMS Sent
+### Track total emails sent.
 
 ```js
 /** @type {typeof import('prom-client')} */
@@ -68,7 +68,7 @@ const sentEmails = new Prometheus.Counter(
 );
 
 const sendEmail = async () => {
-  // Implement logic to send sms here.
+  // Implement logic to send Email here.
 
   // Step 2: Increment counter.
   sendEmail.inc(1);

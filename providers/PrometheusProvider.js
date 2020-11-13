@@ -1,8 +1,7 @@
 "use strict";
 
-const customMetrics = require("../metrics");
 const prometheus = require("prom-client");
-const { ServiceProvider } = require("@adonisjs/fold");
+const { ServiceProvider } = use("@adonisjs/fold");
 
 class PrometheusProvider extends ServiceProvider {
   /**
@@ -13,7 +12,12 @@ class PrometheusProvider extends ServiceProvider {
    * @return {void}
    */
   register() {
+    /**
+     * Configure Prometheus.
+     */
     this.app.singleton("Adonis/Prometheus", () => {
+      const Config = this.app.use("Adonis/Src/Config");
+
       /**
        * Configure system metircs collection.
        */
@@ -22,9 +26,19 @@ class PrometheusProvider extends ServiceProvider {
         const { enabled, ...params } = systemMetrics;
         prometheus.collectDefaultMetrics(params);
       }
-
       return prometheus;
     });
+
+    /**
+     * Setup middlewares.
+     */
+    this.app.bind(
+      "Adonis/Prometheus/Middlewares/CollectPerformanceMetric",
+      () => {
+        const CollectPerformanceMetric = require("../src/Middlewares/CollectPerformanceMetric");
+        return new CollectPerformanceMetric();
+      }
+    );
   }
 
   /**
@@ -33,6 +47,7 @@ class PrometheusProvider extends ServiceProvider {
    * @return {void}
    */
   boot() {
+    const customMetrics = require("../src/Metrics");
     const Config = this.app.use("Adonis/Src/Config");
 
     /**
