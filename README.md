@@ -63,15 +63,23 @@ To simply do that, simply modify the available configuration in [config/promethe
 const Prometheus = use("Prometheus");
 
 // Step 1: Create the metrics counter.
-const sentEmails = new Prometheus.Counter(
-  Config.get("prometheus.throughputMetric")
-);
+const sentEmails = new Prometheus.Counter({
+  name: "send_emails",
+  help: "Total SMS sent.",
+  labels: ["success", "failed"],
+  prefix: "",
+});
 
 const sendEmail = async () => {
-  // Implement logic to send Email here.
+  try {
+    // Implement logic to send Email here.
 
-  // Step 2: Increment counter.
-  sendEmail.inc(1);
+    // Step 2: Increment success counter (if success).
+    sendEmail.inc({ success: 1 });
+  } catch (err) {
+    // Step 2: Increment success counter (if failed).
+    sendEmail.inc({ failed: 1 });
+  }
 };
 
 // Step 3: Send the Email
