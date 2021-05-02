@@ -22,7 +22,7 @@ class CollectPerformanceMetric {
     if (enableHttpMetric) {
       stopHttpRequestTimer = metrics.httpMetric.startTimer({
         method: request.method(),
-        url: includeQueryParams ? request.originalUrl() : url(),
+        url: includeQueryParams ? request.originalUrl() : request.url(),
       });
     }
 
