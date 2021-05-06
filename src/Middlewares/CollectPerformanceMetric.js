@@ -9,7 +9,7 @@ class CollectPerformanceMetric {
      * Extract config.
      */
     const { enabled: enableHttpMetric, includeQueryParams } = Config.get(
-      "prometheus.httpMetric.enabled"
+      "prometheus.httpMetric"
     );
     const enableThroughputMetric = Config.get(
       "prometheus.throughputMetric.enabled"
